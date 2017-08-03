@@ -1,4 +1,4 @@
-package com.test.mylogin.view; /**
+/**
  * Copyright (C) 2015 Fernando Cejas Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,30 +13,15 @@ package com.test.mylogin.view; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import com.test.domain.executor.executor.PostExecutionThread;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
+package com.test.domain.executor.executor;
 
 import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-
 
 /**
- * MainThread (UI Thread) implementation based on a {@link Scheduler}
- * which will execute actions on the Android UI thread
+ * Thread abstraction created to change the execution context from any thread to any other thread.
+ * Useful to encapsulate a UI Thread for example, since some job will be done in background, an
+ * implementation of this interface will change context and update the UI.
  */
-
-@Singleton
-public class UIThread implements PostExecutionThread {
-
-  @Inject
-  UIThread() {}
-
-  @Override
-  public Scheduler getScheduler() {
-    return AndroidSchedulers.mainThread();
-  }
+public interface PostExecutionThread {
+  Scheduler getScheduler();
 }
-

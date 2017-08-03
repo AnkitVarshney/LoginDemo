@@ -17,7 +17,7 @@ package com.test.data.executor.executor;
 
 import android.support.annotation.NonNull;
 
-import com.test.domain.executor.ThreadExecutor;
+import com.test.domain.executor.executor.ThreadExecutor;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;

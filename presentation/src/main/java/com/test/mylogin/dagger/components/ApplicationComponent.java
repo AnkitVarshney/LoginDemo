@@ -17,13 +17,15 @@ package com.test.mylogin.dagger.components;
 
 import android.content.Context;
 
-import com.test.domain.executor.PostExecutionThread;
-import com.test.domain.executor.ThreadExecutor;
+import com.test.domain.executor.executor.PostExecutionThread;
+import com.test.domain.executor.executor.ThreadExecutor;
 import com.test.mylogin.dagger.modules.ApplicationModule;
+import com.test.mylogin.view.activity.BaseActivity;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import retrofit2.Retrofit;
 
 
 /**
@@ -32,9 +34,8 @@ import dagger.Component;
 @Singleton // Constraints this component to one-per-application or unscoped bindings.
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
-
   //Exposed to sub-graphs.
   Context context();
-  ThreadExecutor threadExecutor();
+//  ThreadExecutor threadExecutor();
   PostExecutionThread postExecutionThread();
 }

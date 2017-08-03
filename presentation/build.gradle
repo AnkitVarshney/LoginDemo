@@ -73,6 +73,11 @@ dependencies {
     compile presentationDependencies.rxAndroid
     provided presentationDependencies.javaxAnnotation
 
+    //Retrofit api hit and gson parsing
+    final String SQUARE_UP_VERSION = '2.2.0'
+    compile 'com.squareup.retrofit2:retrofit:' + SQUARE_UP_VERSION
+    compile 'com.squareup.retrofit2:converter-gson:' + SQUARE_UP_VERSION
+
     androidTestCompile presentationTestDependencies.mockito
     androidTestCompile presentationTestDependencies.dexmaker
     androidTestCompile presentationTestDependencies.dexmakerMockito

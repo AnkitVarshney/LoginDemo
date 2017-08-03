@@ -1,4 +1,4 @@
-package com.test.mylogin.view; /**
+/**
  * Copyright (C) 2015 Fernando Cejas Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,30 +13,23 @@ package com.test.mylogin.view; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.test.domain.executor.interactor;
 
-import com.test.domain.executor.executor.PostExecutionThread;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-
+import io.reactivex.observers.DisposableObserver;
 
 /**
- * MainThread (UI Thread) implementation based on a {@link Scheduler}
- * which will execute actions on the Android UI thread
+ * Default {@link DisposableObserver} base class to be used whenever you want default error handling.
  */
+public class DefaultObserver<T> extends DisposableObserver<T> {
+  @Override public void onNext(T t) {
+    // no-op by default.
+  }
 
-@Singleton
-public class UIThread implements PostExecutionThread {
+  @Override public void onComplete() {
+    // no-op by default.
+  }
 
-  @Inject
-  UIThread() {}
-
-  @Override
-  public Scheduler getScheduler() {
-    return AndroidSchedulers.mainThread();
+  @Override public void onError(Throwable exception) {
+    // no-op by default.
   }
 }
-

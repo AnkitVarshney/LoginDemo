@@ -1,4 +1,4 @@
-package com.test.mylogin.view; /**
+/**
  * Copyright (C) 2015 Fernando Cejas Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,30 +13,29 @@ package com.test.mylogin.view; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.test.mylogin.dagger.modules;
 
-import com.test.domain.executor.executor.PostExecutionThread;
+import com.test.domain.executor.interactor.GetUserList;
+import com.test.domain.executor.interactor.UseCase;
+import com.test.mylogin.dagger.PerActivity;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.Named;
 
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-
+import dagger.Module;
+import dagger.Provides;
 
 /**
- * MainThread (UI Thread) implementation based on a {@link Scheduler}
- * which will execute actions on the Android UI thread
+ * Dagger module that provides user related collaborators.
  */
+@Module
+public class UserModule {
 
-@Singleton
-public class UIThread implements PostExecutionThread {
+  public UserModule() {}
 
-  @Inject
-  UIThread() {}
-
-  @Override
-  public Scheduler getScheduler() {
-    return AndroidSchedulers.mainThread();
+  @Provides @PerActivity
+  @Named(GetUserList.NAME) UseCase provideGetUserListUseCase(
+      GetUserList getUserList) {
+    return getUserList;
   }
-}
 
+}

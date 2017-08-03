@@ -78,13 +78,14 @@ dependencies {
     compile dataDependencies.androidAnnotations
     compile dataDependencies.gson
 
-    //Retrofit api hit and gson parsing
+    /*//Retrofit api hit and gson parsing
     final String SQUARE_UP_VERSION = '2.2.0'
     compile 'com.squareup.retrofit2:retrofit:' + SQUARE_UP_VERSION
-    compile 'com.squareup.retrofit2:converter-gson:' + SQUARE_UP_VERSION
+    compile 'com.squareup.retrofit2:converter-gson:' + SQUARE_UP_VERSION*/
 
     testCompile testDependencies.junit
     testCompile testDependencies.assertj
     testCompile testDependencies.mockito
     testCompile testDependencies.robolectric
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
 }

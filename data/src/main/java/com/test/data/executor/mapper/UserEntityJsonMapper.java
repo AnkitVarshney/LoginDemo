@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.test.data.executor.model.mapper;
+package com.test.data.executor.mapper;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+import com.test.data.executor.model.LoginResponseModel;
 
 import java.lang.reflect.Type;
 
@@ -35,27 +37,27 @@ public class UserEntityJsonMapper {
   }
 
   /**
-   * Transform from valid json string to {@link UserEntity}.
+   * Transform from valid json string to {@link com.test.data.executor.model.LoginResponseModel}.
    *
    * @param userJsonResponse A json representing a user profile.
-   * @return {@link UserEntity}.
+   * @return {@link LoginResponseModel}.
    * @throws com.google.gson.JsonSyntaxException if the json string is not a valid json structure.
    */
-  public UserEntity transformUserEntity(String userJsonResponse) throws JsonSyntaxException {
-    final Type userEntityType = new TypeToken<UserEntity>() {}.getType();
+  public LoginResponseModel transformUserEntity(String userJsonResponse) throws JsonSyntaxException {
+    final Type userEntityType = new TypeToken<LoginResponseModel>() {}.getType();
     return this.gson.fromJson(userJsonResponse, userEntityType);
   }
 
   /**
-   * Transform from valid json string to List of {@link UserEntity}.
+   * Transform from valid json string to List of {@link LoginResponseModel}.
    *
    * @param userListJsonResponse A json representing a collection of users.
-   * @return List of {@link UserEntity}.
+   * @return List of {@link LoginResponseModel}.
    * @throws com.google.gson.JsonSyntaxException if the json string is not a valid json structure.
    */
-  public List<UserEntity> transformUserEntityCollection(String userListJsonResponse)
+  public LoginResponseModel transformUserEntityCollection(String userListJsonResponse)
       throws JsonSyntaxException {
-    final Type listOfUserEntityType = new TypeToken<List<UserEntity>>() {}.getType();
+    final Type listOfUserEntityType = new TypeToken<LoginResponseModel>() {}.getType();
     return this.gson.fromJson(userListJsonResponse, listOfUserEntityType);
   }
 }

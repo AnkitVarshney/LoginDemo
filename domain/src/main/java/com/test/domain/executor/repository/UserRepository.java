@@ -13,12 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.test.domain.executor;
+package com.test.domain.executor.repository;
 
-import java.util.concurrent.Executor;
+
+import com.test.domain.executor.User;
+
+import io.reactivex.Observable;
 
 /**
- * Executor implementation can be based on different frameworks or techniques of asynchronous
- * execution, but every implementation will execute the
+ * Interface that represents a Repository for getting {@link User} related data.
  */
-public interface ThreadExecutor extends Executor {}
+public interface UserRepository {
+  /**
+   * Get an {@link Observable} which will emit a List of {@link User}.
+   */
+  Observable<User> users();
+
+  /**
+   * Get an {@link Observable} which will emit a {@link User}.
+   *
+   * @param userId The user id used to retrieve user data.
+   */
+  Observable<User> user(final int userId);
+}

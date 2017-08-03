@@ -16,7 +16,7 @@
 package com.test.mylogin;
 
 
-import com.test.domain.executor.PostExecutionThread;
+import com.test.domain.executor.executor.PostExecutionThread;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

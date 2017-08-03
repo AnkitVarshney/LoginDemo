@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.test.domain.executor;
+package com.test.domain.executor.executor;
 
-import io.reactivex.Scheduler;
+import java.util.concurrent.Executor;
 
 /**
- * Thread abstraction created to change the execution context from any thread to any other thread.
- * Useful to encapsulate a UI Thread for example, since some job will be done in background, an
- * implementation of this interface will change context and update the UI.
+ * Executor implementation can be based on different frameworks or techniques of asynchronous
+ * execution, but every implementation will execute the
  */
-public interface PostExecutionThread {
-  Scheduler getScheduler();
-}
+public interface ThreadExecutor extends Executor {}

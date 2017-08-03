@@ -17,15 +17,23 @@ package com.test.mylogin.dagger.modules;
 
 import android.content.Context;
 
-import com.test.domain.executor.PostExecutionThread;
-import com.test.domain.executor.ThreadExecutor;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.test.domain.executor.executor.PostExecutionThread;
 import com.test.mylogin.AndroidApplication;
 import com.test.mylogin.UIThread;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
@@ -45,13 +53,42 @@ public class ApplicationModule {
     return this.application;
   }
 
-  @Provides @Singleton
-  ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
-    return jobExecutor;
-  }
+//  @Provides @Singleton
+//  ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
+//    return jobExecutor;
+//  }
 
   @Provides @Singleton
   PostExecutionThread providePostExecutionThread(UIThread uiThread) {
     return uiThread;
+  }
+
+  @Provides
+  @Singleton
+  Gson provideGson() {
+    GsonBuilder gsonBuilder = new GsonBuilder();
+    //gsonBuilder.setLenient();
+    gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+    return gsonBuilder.setLenient().create();
+  }
+
+  @Provides
+  @Singleton
+  OkHttpClient provideOkhttpClient(Cache cache) {
+    OkHttpClient.Builder client = new OkHttpClient.Builder()
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(2, TimeUnit.MINUTES);
+    client.cache(cache);
+    return client.build();
+  }
+
+  @Provides
+  @Singleton
+  Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
+    return new Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .baseUrl("http://34.199.50.62/dev/api/")
+            .client(okHttpClient)
+            .build();
   }
 }

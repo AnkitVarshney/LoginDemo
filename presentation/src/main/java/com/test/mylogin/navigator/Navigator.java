@@ -1,4 +1,4 @@
-package com.test.mylogin.view; /**
+/**
  * Copyright (C) 2015 Fernando Cejas Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,30 +13,29 @@ package com.test.mylogin.view; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.test.mylogin.navigator;
 
-import com.test.domain.executor.executor.PostExecutionThread;
+import android.content.Context;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-
-
 /**
- * MainThread (UI Thread) implementation based on a {@link Scheduler}
- * which will execute actions on the Android UI thread
+ * Class used to navigate through the application.
  */
-
 @Singleton
-public class UIThread implements PostExecutionThread {
+public class Navigator {
 
   @Inject
-  UIThread() {}
+  public Navigator() {
+    //empty
+  }
 
-  @Override
-  public Scheduler getScheduler() {
-    return AndroidSchedulers.mainThread();
+  /**
+   * Goes to the user list screen.
+   *
+   * @param context A Context needed to open the destiny activity.
+   */
+  public void navigateToUserList(Context context) {
   }
 }
-
